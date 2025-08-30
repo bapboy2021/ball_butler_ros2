@@ -1,0 +1,125 @@
+<?xml version="1.0" ?>
+<!-- Generated using onshape-to-robot -->
+<!-- Onshape https://cad.onshape.com/documents/3dc4b4763b6718c02dc70986/w/79ac6331923ba2fd9582710d/e/a51fdc22539c66f5617fdfdf -->
+<robot name="onshape_urdf">
+  <!-- Link base -->
+  <link name="base">
+    <inertial>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <mass value="1e-09"/>
+      <inertia ixx="1e-09" ixy="0" ixz="0" iyy="1e-09" iyz="0" izz="1e-09"/>
+    </inertial>
+    <!-- Part base -->
+    <visual>
+      <origin xyz="0 0 0" rpy="0 -0 0"/>
+      <geometry>
+        <mesh filename="package://assets/base.stl"/>
+      </geometry>
+      <material name="base_material">
+        <color rgba="0.615686 0.811765 0.929412 1"/>
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 -0 0"/>
+      <geometry>
+        <mesh filename="package://assets/base.stl"/>
+      </geometry>
+    </collision>
+  </link>
+  <!-- Link lid -->
+  <link name="lid">
+    <inertial>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <mass value="1e-09"/>
+      <inertia ixx="1e-09" ixy="0" ixz="0" iyy="1e-09" iyz="0" izz="1e-09"/>
+    </inertial>
+    <!-- Part lid -->
+    <visual>
+      <origin xyz="2.10649e-35 1.53081e-18 0.025" rpy="3.14159 -0 7.53366e-18"/>
+      <geometry>
+        <mesh filename="package://assets/lid.stl"/>
+      </geometry>
+      <material name="lid_material">
+        <color rgba="0.615686 0.811765 0.929412 1"/>
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="2.10649e-35 1.53081e-18 0.025" rpy="3.14159 -0 7.53366e-18"/>
+      <geometry>
+        <mesh filename="package://assets/lid.stl"/>
+      </geometry>
+    </collision>
+  </link>
+  <!-- Link pitch -->
+  <link name="pitch">
+    <inertial>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <mass value="1e-09"/>
+      <inertia ixx="1e-09" ixy="0" ixz="0" iyy="1e-09" iyz="0" izz="1e-09"/>
+    </inertial>
+    <!-- Part pitch -->
+    <visual>
+      <origin xyz="1.38778e-17 0 -3.46945e-18" rpy="-1.5708 3.04003e-18 -3.92834e-18"/>
+      <geometry>
+        <mesh filename="package://assets/pitch.stl"/>
+      </geometry>
+      <material name="pitch_material">
+        <color rgba="0.615686 0.811765 0.929412 1"/>
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="1.38778e-17 0 -3.46945e-18" rpy="-1.5708 3.04003e-18 -3.92834e-18"/>
+      <geometry>
+        <mesh filename="package://assets/pitch.stl"/>
+      </geometry>
+    </collision>
+  </link>
+  <!-- Link hand -->
+  <link name="hand">
+    <inertial>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <mass value="1e-09"/>
+      <inertia ixx="1e-09" ixy="0" ixz="0" iyy="1e-09" iyz="0" izz="1e-09"/>
+    </inertial>
+    <!-- Part hand -->
+    <visual>
+      <origin xyz="0.01 0 0" rpy="-3.14159 -2.63281e-18 1.73754e-17"/>
+      <geometry>
+        <mesh filename="package://assets/hand.stl"/>
+      </geometry>
+      <material name="hand_material">
+        <color rgba="0.615686 0.811765 0.929412 1"/>
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0.01 0 0" rpy="-3.14159 -2.63281e-18 1.73754e-17"/>
+      <geometry>
+        <mesh filename="package://assets/hand.stl"/>
+      </geometry>
+    </collision>
+  </link>
+  <!-- Joint from pitch to hand -->
+  <joint name="throw" type="prismatic">
+    <origin xyz="-0.01 0.0949984 8.67362e-17" rpy="1.5708 -1.5708 0"/>
+    <parent link="pitch"/>
+    <child link="hand"/>
+    <axis xyz="0 0 1"/>
+    <limit effort="10" velocity="10" lower="-1" upper="1"/>
+  </joint>
+  <!-- Joint from lid to pitch -->
+  <joint name="pitch" type="revolute">
+    <origin xyz="0.041 0.025 -0.0135" rpy="-1.5708 0.771723 7.57459e-16"/>
+    <parent link="lid"/>
+    <child link="pitch"/>
+    <axis xyz="0 0 1"/>
+    <limit effort="10" velocity="10" lower="-3.141592653589793" upper="3.141592653589793"/>
+  </joint>
+  <!-- Joint from base to lid -->
+  <joint name="yaw" type="revolute">
+    <origin xyz="-3.12958e-20 2.12718e-19 0.0565" rpy="3.14159 -0 -3.07134"/>
+    <parent link="base"/>
+    <child link="lid"/>
+    <axis xyz="0 0 1"/>
+    <limit effort="10" velocity="10" lower="-3.141592653589793" upper="3.141592653589793"/>
+  </joint>
+</robot>
