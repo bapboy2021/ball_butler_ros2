@@ -1,0 +1,6 @@
+# Default initial positions for ball_butler's ros2_control fake system
+
+initial_positions:
+  pitch: 0.0
+  throw: 0.0
+  yaw: 0.0

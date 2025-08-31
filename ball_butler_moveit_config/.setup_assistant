@@ -1,0 +1,31 @@
+moveit_setup_assistant_config:
+  urdf:
+    package: ball_butler_support
+    relative_path: urdf/robot.urdf
+  srdf:
+    relative_path: config/ball_butler.srdf
+  package_settings:
+    author_name: Brian
+    author_email: bapboy2021@gmail.com
+    generated_timestamp: 1756670016
+  control_xacro:
+    command:
+      - position
+      - velocity
+      - effort
+    state:
+      - position
+      - velocity
+      - effort
+  modified_urdf:
+    xacros:
+      - control_xacro
+  control_xacro:
+    command:
+      - position
+      - velocity
+      - effort
+    state:
+      - position
+      - velocity
+      - effort
